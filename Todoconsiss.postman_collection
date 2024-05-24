@@ -31,6 +31,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"todo #2\",\r\n    \"subtitle\":\"todo 2\",\r\n    \"description\": \"todo de prueba segundo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "localhost:3000/api/v1/todo",
 					"host": [
@@ -47,12 +56,21 @@
 			"response": []
 		},
 		{
-			"name": "detail",
+			"name": "create Copy",
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"todo #2 update\",\r\n    \"subtitle\":\"todo 2 update\",\r\n    \"description\": \"todo de prueba segundo update\",\r\n    \"statu\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:3000/api/v1/todo/1",
+					"raw": "localhost:3000/api/v1/todo/66510c738f0b1157f3ee6abd",
 					"host": [
 						"localhost"
 					],
@@ -61,7 +79,49 @@
 						"api",
 						"v1",
 						"todo",
-						"1"
+						"66510c738f0b1157f3ee6abd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/todo/66510c738f0b1157f3ee6abd",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"todo",
+						"66510c738f0b1157f3ee6abd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/todo/66510fbe08e2245ff7e40775",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"todo",
+						"66510fbe08e2245ff7e40775"
 					]
 				}
 			},
