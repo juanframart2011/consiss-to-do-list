@@ -91,26 +91,26 @@ const ToDoController = {
         if( !req.body.title || !req.body.subtitle || !req.body.description ){
             return res.status(401).json({ message: 'Los datos son obligatorios' });
         }
-        const todoId = parseInt(req.params.id);
+        const todoId = req.params.id;
 
         var todoData = {
-            id:todoId,
             title:req.body.title,
             subtitle:req.body.subtitle,
-            description:req.body.description
+            description:req.body.description,
+            statu:req.body.statu
         }
 
         try {
 
             // Espera a que la promesa se resuelva y captura el resultado directamente
-            const todo = await TodoModel.getId(todoId);
+            const todo = await TodoModel.findById(todoId);
 
             // Si el todo no se encuentra, podrías querer enviar una respuesta 404
             if (!todo) {
                 return res.status(404).json({ message: 'todo no encontrado' });
             }
 
-            var todoResult = await TodoModel.update(todoData);
+            var todoResult = await TodoModel.findByIdAndUpdate(todoId, todoData, { new: true });
             
             if (todoResult) {
                 
