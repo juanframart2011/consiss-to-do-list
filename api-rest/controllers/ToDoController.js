@@ -1,4 +1,4 @@
-const TodoModel = require('../models/TodoModel');
+const TodoModel = require('../models/Todo');
 require('dotenv').config();
 /*
 title, subtitle, description, timestamps
@@ -13,11 +13,14 @@ const ToDoController = {
         var todoData = {
             title:req.body.title,
             subtitle:req.body.subtitle,
-            description:req.body.description
+            description:req.body.description,
+            statu:1
         }
 
         try {
-            var todoResult = await TodoModel.create(todoData);
+            
+            const todoResult = new TodoModel(todoData);
+            await todoResult.save();
             
             if (todoResult) {
                 
@@ -54,14 +57,13 @@ const ToDoController = {
             res.status(500).json({ error: 'Error al al eliminar todo' });
         }
     },
-    getAll: (req, res) => {
-        TodoModel.getAll((error, todos) => {
-            if (error) {
-                // Manejar errores de base de datos
-                return res.status(500).json({ error: 'Error al obtener los todos' });
-            }
+    getAll: async (req, res) => {
+        try {
+            const todos = await TodoModel.find();
             res.status(200).json(todos);
-        });
+        } catch (error) {
+        res.status(500).json({ message: error.message });
+        }
     },
     getDetailById: async (req, res) => {
         const todoId = parseInt(req.params.id); // Asegúrate de declarar la variable con const o let

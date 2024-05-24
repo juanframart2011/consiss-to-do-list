@@ -2,7 +2,11 @@ const express = require('express');
 const cors = require("cors");
 const app = express();
 const routes = require('./routes');
+const connectDB = require('./config/database');
+
 require('dotenv').config();
+
+connectDB();
 
 // Habilitar CORS
 app.use(cors());
