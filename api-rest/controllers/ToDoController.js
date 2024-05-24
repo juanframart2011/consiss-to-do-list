@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const TodoModel = require('../models/Todo');
 require('dotenv').config();
 /*
@@ -36,18 +37,18 @@ const ToDoController = {
         }
     },
     delete: async (req, res) => {
-        const todoId = parseInt(req.params.id);
+        const todoId = req.params.id;
       
         try {
             // Espera a que la promesa se resuelva y captura el resultado directamente
-            const todo = await TodoModel.getId(todoId);
+            const todo = await TodoModel.findById(todoId);
 
             // Si el todo no se encuentra, podrías querer enviar una respuesta 404
             if (!todo) {
                 return res.status(404).json({ message: 'todo no encontrado' });
             }
 
-            var todoResult = await TodoModel.delete(todoId);
+            var todoResult = await TodoModel.findByIdAndDelete(todoId);
 
             res.status(200).json('todo Eliminado');
         }
@@ -66,22 +67,23 @@ const ToDoController = {
         }
     },
     getDetailById: async (req, res) => {
-        const todoId = parseInt(req.params.id); // Asegúrate de declarar la variable con const o let
+        const todoId = req.params.id; // Asegúrate de declarar la variable con const o let
     
         try {
-          // Espera a que la promesa se resuelva y captura el resultado directamente
-          const todo = await TodoModel.getId(todoId);
+
+            // Espera a que la promesa se resuelva y captura el resultado directamente
+            const todo = await TodoModel.findById(todoId);
           
-          // Si el todo no se encuentra, podrías querer enviar una respuesta 404
-          if (!todo) {
-            return res.status(404).json({ message: 'todo no encontrado' });
-          }
+            // Si el todo no se encuentra, podrías querer enviar una respuesta 404
+            if (!todo) {
+                return res.status(404).json({ message: 'todo no encontrado' });
+            }
       
           // Si se encuentra el todo, envía los datos como respuesta
           res.status(200).json(todo);
         } catch (error) {
           // Maneja cualquier error que ocurra durante la obtención del todo
-          res.status(500).json({ error: 'Error al obtener todo' });
+          res.status(500).json({ error: 'Error al obtener todo ', error });
         }
     },
     update: async (req, res) => {
