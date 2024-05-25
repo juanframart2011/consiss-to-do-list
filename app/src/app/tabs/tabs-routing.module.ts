@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../create/create.module').then(m => m.CreatePageModule)
       },
       {
+        path: 'edit/:id',
+        loadChildren: () => import('../create/create.module').then(m => m.CreatePageModule)
+      },
+      {
         path: '',
         redirectTo: '/todo/list',
         pathMatch: 'full'

@@ -14,7 +14,7 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
-  delete(id: string): Observable<Todo> {
+  delete(id: any): Observable<Todo> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<Todo>(url, this.httpOptions)
       .pipe(

@@ -5,9 +5,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <ion-item-sliding *ngFor="let todo of todos">
+      <ion-item>
+        <ion-label>
+          <h2>{{ todo.title }}</h2>
+          <p>{{ todo.subtitle }}</p>
+          <p>{{ todo.description }}</p>
+        </ion-label>
+        <ion-badge *ngIf="todo.statu == 1" color="primary">Abierta</ion-badge>
+        <ion-badge *ngIf="todo.statu == 2" color="tertiary">En Proceso</ion-badge>
+        <ion-badge *ngIf="todo.statu == 3" color="success">Completada</ion-badge>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="edit(todo._id)">Editar</ion-item-option>
+        <ion-item-option color="danger" (click)="delete(todo)">Eliminar</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

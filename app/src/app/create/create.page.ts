@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-tab2',
+  selector: 'app-create',
   templateUrl: 'create.page.html',
   styleUrls: ['create.page.scss']
 })
