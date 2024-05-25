@@ -37,14 +37,14 @@ export class TodoService {
       );
   }
 
-  save(todo: any): Observable<Todo> {
+  save(todo: Todo): Observable<Todo> {
     return this.http.post<Todo>(this.apiUrl, todo, this.httpOptions)
       .pipe(
         catchError(this.handleError<Todo>('create'))
       );
   }
 
-  update(id: string, todo: any): Observable<Todo> {
+  update(id: any, todo: Todo): Observable<Todo> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put<Todo>(url, todo, this.httpOptions)
       .pipe(

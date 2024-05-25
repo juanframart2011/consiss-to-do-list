@@ -13,6 +13,7 @@ import { LoadingController } from '@ionic/angular';
 export class CreatePage {
   
   title:string = 'Crear ToDo';
+  buttonForm:string = 'Crear ToDo';
   isEdit:boolean = false;
   todo: Todo = {
     title: '',
@@ -32,6 +33,7 @@ export class CreatePage {
   ionViewWillEnter(){
     this.route.params.subscribe(params => {
       this.title = 'Crear ToDo';
+      this.buttonForm = 'Crear ToDo';
       this.isEdit = false;
       if (Object.keys(params).length > 0) {
         
@@ -50,15 +52,37 @@ export class CreatePage {
     this.todoService.getById(id).subscribe(todo => {
       this.todo = todo;
       this.title = 'Editar ToDo: ' + todo.title;
+      this.buttonForm = 'Editar ToDo';
       this.isEdit = true;
       loading.dismiss();
     });
   }
 
-  async save() {
+  async submit() {
     try {
-      const newTodo = await this.todoService.save(this.todo).toPromise();
-      this.router.navigate(['/todo-list']);
+      var textLoading = 'Guardando ToDo';
+      if(this.isEdit){
+        textLoading = 'Editando ToDo';
+      }
+
+      const loading = await this.loadingController.create({
+        message: textLoading,
+      });
+      await loading.present();
+
+      if(this.isEdit){
+        this.todoService.update(this.todo._id,this.todo).subscribe(todo => {
+          loading.dismiss();
+          this.router.navigate(['/todo/list']);
+        });
+      }
+      else{
+
+        this.todoService.save(this.todo).subscribe(todo => {
+          loading.dismiss();
+          this.router.navigate(['/todo/list']);
+        });
+      }
     } catch (error) {
       await this.showAlert('Error', 'There was an error creating the todo');
       console.error(error);

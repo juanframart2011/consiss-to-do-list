@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="save()">
+  <form (ngSubmit)="submit()">
     <ion-list>
       <ion-item>
         <ion-label position="stacked">Title</ion-label>
@@ -24,7 +24,7 @@
 
       <ion-item *ngIf="isEdit">
         <ion-label position="stacked">Estatus</ion-label>
-        <ion-select [(ngModel)]="todo.statu" name="statu" required>
+        <ion-select [(ngModel)]="todo.statu" name="statu">
           <ion-select-option value="1">Abierto</ion-select-option>
           <ion-select-option value="2">En Progreso</ion-select-option>
           <ion-select-option value="3">Completeda</ion-select-option>
@@ -32,6 +32,6 @@
       </ion-item>
     </ion-list>
 
-    <ion-button expand="full" type="submit">Create Todo</ion-button>
+    <ion-button expand="full" type="submit">{{ buttonForm }}</ion-button>
   </form>
 </ion-content>
