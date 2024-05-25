@@ -31,6 +31,14 @@ export class CreatePage {
   ) {}
 
   ionViewWillEnter(){
+
+    this.todo = {
+      title: '',
+      subtitle: '',
+      description: '',
+      statu: 1 // Default value for status
+    };
+
     this.route.params.subscribe(params => {
       this.title = 'Crear ToDo';
       this.buttonForm = 'Crear ToDo';
