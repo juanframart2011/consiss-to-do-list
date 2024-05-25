@@ -3,6 +3,7 @@ import { Todo } from '../interface/todo';
 import { TodoService } from '../service/todo.service';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -14,7 +15,7 @@ export class ListPage {
 
   constructor(
     private alertController: AlertController,
-    private loadingController: LoadingController,private todoService: TodoService) { }
+    private loadingController: LoadingController,private router: Router,private todoService: TodoService) { }
 
   ionViewWillEnter(){
     this._getAll();
@@ -59,5 +60,6 @@ export class ListPage {
 
   edit(id:any){
 
+    this.router.navigate(['/todo/edit/'+id]);
   }
 }
