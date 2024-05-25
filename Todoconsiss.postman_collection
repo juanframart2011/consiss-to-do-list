@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8f5f2b5b-4081-4329-a50d-df09b64c265b",
+		"_postman_id": "23e9b4ed-ac61-4ab6-b180-6d4cd8c8b4e2",
 		"name": "Todo consiss",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "388641"
@@ -56,7 +56,7 @@
 			"response": []
 		},
 		{
-			"name": "create Copy",
+			"name": "update",
 			"request": {
 				"method": "PUT",
 				"header": [],

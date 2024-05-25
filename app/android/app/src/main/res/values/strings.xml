@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">todo consiss Juan Franco</string>
+    <string name="title_activity_main">todo consiss Juan Franco</string>
+    <string name="package_name">consiss.juanfranco.todoconsissjuanfranco</string>
+    <string name="custom_url_scheme">consiss.juanfranco.todoconsissjuanfranco</string>
+</resources>
